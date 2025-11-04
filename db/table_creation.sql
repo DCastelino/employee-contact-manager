@@ -7,8 +7,6 @@ create table Companies
 	Website VARCHAR(255)	
 )
 
-CREATE CLUSTERED INDEX IX_Companies_ID ON Companies (ID)
-
 create table Employees (
 	ID INT IDENTITY(1,1) CONSTRAINT PK_Employees PRIMARY KEY,
 	[Name] VARCHAR(255) NOT NULL,
@@ -20,9 +18,7 @@ create table Employees (
 	CreatedAt DATETIME2 CONSTRAINT DF_Employees_CreatedAt DEFAULT SYSDATETIME()
 )
 
-CREATE CLUSTERED INDEX IX_Employees_ID ON Employees (ID)
-
-CREATE NONCLUSTERED INDEX IX_Employees_CompanyID on Employees (CompanyID)
+CREATE NONCLUSTERED INDEX IX_Employees_CompanyID on Employees (CompanyID) -- for quick joins
 
 CREATE NONCLUSTERED INDEX IX_Employees_CompanyID_IsActive ON Employees (CompanyID, IsActive) -- optimize filtering
 
