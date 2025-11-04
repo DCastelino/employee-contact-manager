@@ -12,9 +12,9 @@ namespace employee_contact_server.Controllers
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<EmployeesController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public EmployeesController(ILogger<EmployeesController> logger)
         {
             _logger = logger;
         }

@@ -1,14 +1,25 @@
-﻿namespace employee_contact_server.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace employee_contact_server.Models;
+
+public partial class Employee
 {
-    public class Employee
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
-        public string JobTitle { get; set; }
-        public string CompanyId { get; set; }    
-        public string IsActive { get; set; }
-        public int CreatedAt { get; set; }
-    }
+    public int Id { get; set; }
+
+    public string Name { get; set; } = null!;
+
+    public string Email { get; set; } = null!;
+
+    public string? Phone { get; set; }
+
+    public string? JobTitle { get; set; }
+
+    public int CompanyId { get; set; }
+
+    public bool? IsActive { get; set; }
+
+    public DateTime? CreatedAt { get; set; }
+
+    public virtual Company Company { get; set; } = null!;
 }
