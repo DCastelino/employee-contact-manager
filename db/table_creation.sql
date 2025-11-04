@@ -22,7 +22,7 @@ CREATE NONCLUSTERED INDEX IX_Employees_CompanyID on Employees (CompanyID) -- for
 
 CREATE NONCLUSTERED INDEX IX_Employees_CompanyID_IsActive ON Employees (CompanyID, IsActive) -- optimize filtering
 
-CREATE UNIQUE NONCLUSTERED INDEX IX_Employees_Email ON Employee (Email) -- unique constraint on email
+CREATE UNIQUE NONCLUSTERED INDEX IX_Employees_Email ON Employees (Email) -- unique constraint on email
 
 -- Sample data Companies
 INSERT INTO Companies (CompanyName, Domain, Industry, Website)
