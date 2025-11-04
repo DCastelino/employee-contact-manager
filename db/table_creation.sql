@@ -1,26 +1,31 @@
 create table Companies
 (
-	ID INT IDENTITY(1,1) PRIMARY KEY,
+	ID INT IDENTITY(1,1) CONSTRAINT PK_Companies PRIMARY KEY,
 	CompanyName VARCHAR(255) NOT NULL,
-	Domain VARCHAR(255) NOT NULL UNIQUE,
+	[Domain] VARCHAR(255) NOT NULL CONSTRAINT UQ_Companies_Domain UNIQUE,
 	Industry VARCHAR(255),
-	Website VARCHAR(255)
-	
+	Website VARCHAR(255)	
 )
 
 
 create table Employees (
-	ID INT IDENTITY(1,1) PRIMARY KEY,
+	ID INT IDENTITY(1,1) CONSTRAINT PK_Employees PRIMARY KEY,
 	[Name] VARCHAR(255) NOT NULL,
-	Email VARCHAR(255) NOT NULL UNIQUE,
+	Email VARCHAR(255) NOT NULL CONSTRAINT UQ_Employees_Email UNIQUE,
 	Phone VARCHAR(50),
 	JobTitle VARCHAR(255),
-	CompanyID INT NOT NULL REFERENCES Companies(ID) ON DELETE CASCADE,
-	IsActive BIT DEFAULT 1,
-	CreatedAt DATETIME2 DEFAULT sysdatetime()
+	CompanyID INT NOT NULL CONSTRAINT FK_Employees_CompanyId FOREIGN KEY (CompanyID) REFERENCES Companies(ID) ON DELETE CASCADE ON UPDATE CASCADE,
+	IsActive BIT CONSTRAINT DF_Employees_IsActive DEFAULT 1,
+	CreatedAt DATETIME2 CONSTRAINT DF_Employees_CreatedAt DEFAULT SYSDATETIME()
 )
 
--- Sample Companies
+CREATE CLUSTERED INDEX IX_Employees_CompanyID ON Employees (CompanyID)
+
+CREATE INDEX IX_Employees_CompanyID_IsActive ON Employees (CompanyID, IsActive) -- optimize filtering
+
+CREATE INDEX IX_Employee_JobTitle ON Employee (JobTitle)
+
+-- Sample data Companies
 INSERT INTO Companies (CompanyName, Domain, Industry, Website)
 VALUES
 ('Alpha Corp', 'alpha.com', 'Technology', 'https://alpha.com'),
@@ -29,7 +34,7 @@ VALUES
 ('Delta LLC', 'delta.io', 'Retail', 'https://delta.io'),
 ('Epsilon GmbH', 'epsilon.de', 'Manufacturing', 'https://epsilon.de');
 
--- Sample Employees
+-- Sample data Employees
 INSERT INTO Employees (Name, Email, Phone, JobTitle, CompanyID)
 VALUES
 ('Alice Smith', 'alice@alpha.com', '555-0100', 'Software Engineer', 1),

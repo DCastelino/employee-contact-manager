@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "BrI5Upxz+R8=",
+  "success": true,
+  "projectFilePath": "C:\\repos\\employee-contact-management-system\\employee-contact-server\\employee-contact-server\\employee-contact-server.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Daithi\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.10\\microsoft.aspnetcore.openapi.9.0.10.nupkg.sha512",
+    "C:\\Users\\Daithi\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}
