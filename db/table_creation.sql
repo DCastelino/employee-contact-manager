@@ -7,6 +7,7 @@ create table Companies
 	Website VARCHAR(255)	
 )
 
+CREATE CLUSTERED INDEX IX_Companies_ID ON Companies (ID)
 
 create table Employees (
 	ID INT IDENTITY(1,1) CONSTRAINT PK_Employees PRIMARY KEY,
@@ -19,11 +20,13 @@ create table Employees (
 	CreatedAt DATETIME2 CONSTRAINT DF_Employees_CreatedAt DEFAULT SYSDATETIME()
 )
 
-CREATE CLUSTERED INDEX IX_Employees_CompanyID ON Employees (CompanyID)
+CREATE CLUSTERED INDEX IX_Employees_ID ON Employees (ID)
 
-CREATE INDEX IX_Employees_CompanyID_IsActive ON Employees (CompanyID, IsActive) -- optimize filtering
+CREATE NONCLUSTERED INDEX IX_Employees_CompanyID on Employees (CompanyID)
 
-CREATE INDEX IX_Employee_JobTitle ON Employee (JobTitle)
+CREATE NONCLUSTERED INDEX IX_Employees_CompanyID_IsActive ON Employees (CompanyID, IsActive) -- optimize filtering
+
+CREATE UNIQUE NONCLUSTERED INDEX IX_Employees_Email ON Employee (Email) -- unique constraint on email
 
 -- Sample data Companies
 INSERT INTO Companies (CompanyName, Domain, Industry, Website)
