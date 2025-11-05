@@ -1,4 +1,5 @@
 using employee_contact_server.DBContext;
+using employee_contact_server.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +21,9 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<ICompanyService, CompanyService>();
+
 builder.Services.AddDbContext<ApplicationDbContext>(options => {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DBConnectionString"));
 });
@@ -40,7 +44,7 @@ if (app.Environment.IsDevelopment())
 //    var results = await dbContext.Employees
 //        .Select(e => new {
 //            e.Id,
-//            e.Name,
+//            e.Name
 //            e.Email,
 //            e.Phone,
 //            e.JobTitle,
