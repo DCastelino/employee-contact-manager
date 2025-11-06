@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("employee-contact-server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a8ac4eac2fdb7c5b31c9e54fe2fbd1a992dea4cd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5b328eec227f8f422c90385fe29988a3a1bd397c")]
 [assembly: System.Reflection.AssemblyProductAttribute("employee-contact-server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("employee-contact-server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

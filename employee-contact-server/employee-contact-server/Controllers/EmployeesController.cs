@@ -39,14 +39,91 @@ namespace employee_contact_server.Controllers
         }
 
         // get all employees
+        [HttpPost]
+        public async Task<ActionResult<EmployeeDTO>> CreateEmployee([FromBody] CreateEmployeeDTO createDto)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+
+                var employee = await _employeeService.CreateEmployeeAsync(createDto);
+                return CreatedAtAction(nameof(GetEmployeeByIdAsync), new { id = employee.Id }, employee);
+
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error attempting to create employee");
+                return BadRequest(ex.Message);
+            }
+        }
+
+
         // get employee by id
+        [HttpGet("{id}")]
+        public async Task<ActionResult<EmployeeDTO>> GetEmployeeByIdAsync(int id)
+        {
+            try
+            {
+                var employee = await _employeeService.GetEmployeeByIdAsync(id);
+
+                if (employee == null)
+                    return NotFound(new { message = $"Employee with {id} not found" });
+
+                return Ok(employee);
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error finding employee with Id: {id}");
+                return BadRequest(ex.Message);
+            }
+        }
+
+        // update employee
+        [HttpPut("{id}")]
+        public async Task<ActionResult<EmployeeDTO>> UpdateEmployee(int id, [FromBody] UpdateEmployeeDTO updateEmployeeDTO)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+
+                var employee = await _employeeService.UpdateEmployeeAsync(id, updateEmployeeDTO);
+
+                if (employee == null)
+                    return NotFound();
+
+                return Ok(employee);
+            }
+            catch (Exception ex)
+            {
+
+                _logger.LogError(ex, $"Error attempting to update employee with id: {id}");
+                return BadRequest(ex.Message);
+            }
+        }
 
 
-        // create employee
-        // delete employee
 
-        //get companies --> for company controller
+        [HttpDelete]
+        public async Task<IActionResult> DeleteEmployee(int id)
+        {
+            try
+            {
+                var result = await _employeeService.DeleteEmployeeAsync(id);
+                if (!result)
+                    return NotFound();
 
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
 
+                _logger.LogError(ex, $"Error deleting employee with Id: {id}");
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

@@ -191,7 +191,7 @@ namespace employee_contact_server.Services
                 Phone = employee.Phone,
                 JobTitle = employee.JobTitle,
                 CompanyId = employee.CompanyId,
-                CompanyName = employee.Company.CompanyName,
+                CompanyName = employee.Company?.CompanyName,
                 IsActive = employee.IsActive,
                 CreatedAt = employee.CreatedAt
             };
