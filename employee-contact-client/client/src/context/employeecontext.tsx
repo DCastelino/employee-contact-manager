@@ -11,7 +11,7 @@ interface EmployeeContextType {
 const EmployeesContext = createContext<EmployeeContextType | undefined>(undefined);
 
 export const EmployeesProvider = ({ children }: { children: ReactNode }) => {
-  const [pageSize, setPageSize] = useState(20);
+  const [pageSize, setPageSize] = useState(10);
   const [density, setDensity] = useState<'compact' | 'standard' | 'comfortable'>('standard');
 
   return (

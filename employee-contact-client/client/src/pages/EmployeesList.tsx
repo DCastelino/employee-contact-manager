@@ -234,7 +234,7 @@ export default function EmployeesList() {
         </Stack>
       </Paper>
 
-      <Paper sx={{ height: 600, width: '100%' }}>
+      <Paper sx={{ width: '100%' }}>
         <DataGrid
           rows={data?.items || []}
           columns={columns}
@@ -245,7 +245,13 @@ export default function EmployeesList() {
           paginationMode="server"
           onPaginationModelChange={setPaginationModel}
           disableRowSelectionOnClick
-          sx={{
+          initialState={{
+            pagination: {
+              paginationModel: { pageSize: 10, page: 0 },
+            },
+          }}
+          sx={{ // autogen
+            height: 700,
             '& .MuiDataGrid-cell:focus': {
               outline: 'none',
             },
