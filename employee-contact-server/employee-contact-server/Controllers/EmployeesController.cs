@@ -38,9 +38,9 @@ namespace employee_contact_server.Controllers
             }
         }
 
-        
+
         /// <summary>
-        /// Create employee 
+        /// Creates the employee, validating the input data handling errors appropriately.
         /// </summary>
         /// <param name="createDto"></param>
         /// <returns></returns>
@@ -65,7 +65,11 @@ namespace employee_contact_server.Controllers
         }
 
 
-        // get employee by id
+        /// <summary>
+        /// Gets the employee with the corresponding id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<EmployeeDTO>> GetEmployeeByIdAsync(int id)
         {
@@ -86,7 +90,12 @@ namespace employee_contact_server.Controllers
             }
         }
 
-        // update employee
+        /// <summary>
+        /// Updates the employee's id with the given data verifies if the email and company id are valid.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="updateEmployeeDTO"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<ActionResult<EmployeeDTO>> UpdateEmployee(int id, [FromBody] UpdateEmployeeDTO updateEmployeeDTO)
         {
@@ -111,7 +120,11 @@ namespace employee_contact_server.Controllers
         }
 
 
-
+        /// <summary>
+        /// Deletes the employee with the given id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEmployee(int id)
         {

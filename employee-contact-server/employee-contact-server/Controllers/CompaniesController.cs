@@ -16,6 +16,10 @@ namespace employee_contact_server.Controllers
             _companyService = companyService;
         }
 
+        /// <summary>
+        /// Retreives the list of all companies
+        /// </summary>
+        /// <returns>List of Companies</returns>
         [HttpGet]
         public async Task<ActionResult<List<CompanyDTO>>> GetAllCompaniesAsync()
         {
