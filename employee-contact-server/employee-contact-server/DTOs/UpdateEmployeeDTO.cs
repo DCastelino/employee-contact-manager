@@ -14,7 +14,7 @@ namespace employee_contact_server.DTOs
         public string Email { get; set; } = string.Empty;
 
         [MaxLength(50, ErrorMessage = "Phone cannot exceed 50 characters")]
-        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Invalid phone number format.")]
+        [RegularExpression(@"^\d{3}-\d{4}$", ErrorMessage = "Invalid phone number format.")]
         public string? Phone { get; set; }
 
         [MaxLength(255, ErrorMessage = "Job title cannot exceed 255 characters")]
