@@ -48,7 +48,7 @@ namespace employee_contact_server.Controllers
                     return BadRequest(ModelState);
 
                 var employee = await _employeeService.CreateEmployeeAsync(createDto);
-                return CreatedAtAction(nameof(GetEmployeeByIdAsync), new { id = employee.Id }, employee);
+                return Ok(employee);
 
 
             }
@@ -107,7 +107,7 @@ namespace employee_contact_server.Controllers
 
 
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEmployee(int id)
         {
             try
