@@ -38,7 +38,12 @@ namespace employee_contact_server.Controllers
             }
         }
 
-        // get all employees
+        
+        /// <summary>
+        /// Create employee 
+        /// </summary>
+        /// <param name="createDto"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult<EmployeeDTO>> CreateEmployee([FromBody] CreateEmployeeDTO createDto)
         {
