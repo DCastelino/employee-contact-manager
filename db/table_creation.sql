@@ -1,3 +1,23 @@
+-- Create database if it doesn't exist
+IF NOT EXISTS (SELECT name FROM sys.databases WHERE name = 'mademployees')
+BEGIN
+    CREATE DATABASE mademployees;
+END
+GO
+
+USE mademployees;
+GO
+
+-- Drop tables if they exist for clean slate
+IF OBJECT_ID('dbo.Employees', 'U') IS NOT NULL
+    DROP TABLE dbo.Employees;
+GO
+
+IF OBJECT_ID('dbo.Companies', 'U') IS NOT NULL
+    DROP TABLE dbo.Companies;
+GO
+
+
 create table Companies
 (
 	ID INT IDENTITY(1,1) CONSTRAINT PK_Companies PRIMARY KEY,
