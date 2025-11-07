@@ -7,8 +7,3 @@ export interface PaginatedResponse<T> {
     items: T[];
     total: number;
 }
-
-export interface ErrorResponse {
-    message: string;
-    details?: Record<string, string[]>;
-}
