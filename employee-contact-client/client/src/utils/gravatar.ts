@@ -17,7 +17,7 @@ export const getGravatarUrl = (email: string, size = 80): string => {
   const trimmedEmail = email.trim().toLowerCase();
   const hash = md5(trimmedEmail); // hash using md5 package
   
-  const url = `https://www.gravatar.com/avatar/${hash}?s=${size}&d=404&r=g`;
+  const url = `https://www.gravatar.com/avatar/${hash}?s=${size}&d=initials&r=g`;
   
   gravatarCache.set(cacheKey, url);
   

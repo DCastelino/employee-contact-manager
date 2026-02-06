@@ -5,7 +5,7 @@ export const employeeSchema = z.object({
   email: z.string().min(1, 'Email is required').email('Invalid email address').max(255, 'Email cannot exceed 255 characters'),
   phone: z
     .string()
-    .regex(/^\d{3}-\d{4}$/, 'Invalid phone number')
+    .regex(/^\d{3}-?\d{3}-?\d{4}$/, 'Invalid phone number')
     .optional()
     .or(z.literal('')),
   jobTitle: z.string().max(100, 'Job title cannot exceed 100 characters').optional().or(z.literal('')),

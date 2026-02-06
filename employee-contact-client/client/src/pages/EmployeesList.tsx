@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Paper, Box, Typography, Button, TextField, FormControlLabel, Checkbox, MenuItem, Stack, Avatar, IconButton, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, } from '@mui/material';
+import { Paper, Box, Typography, Button, TextField, FormControlLabel, Checkbox, MenuItem, Stack, Avatar, IconButton, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, debounce, } from '@mui/material';
 import { DataGrid, type GridColDef, type GridPaginationModel } from '@mui/x-data-grid';
 import { Add as AddIcon, Edit as EditIcon, Delete as DeleteIcon } from '@mui/icons-material';
 import { useSnackbar } from 'notistack';
@@ -44,9 +44,7 @@ export default function EmployeesList() {
 
   const handleSearchKeyPress = useCallback(
     (e: React.KeyboardEvent) => {
-      if (e.key === 'Enter') {
-        handleSearch();
-      }
+      debounce(() => {handleSearch()}, 300);
     },
     [handleSearch]
   );
