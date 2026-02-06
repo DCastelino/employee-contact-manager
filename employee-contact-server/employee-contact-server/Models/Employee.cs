@@ -21,5 +21,7 @@ public partial class Employee
 
     public DateTime? CreatedAt { get; set; }
 
+    public bool Deleted { get; set; } = false;
+
     public virtual Company Company { get; set; } = null!;
 }

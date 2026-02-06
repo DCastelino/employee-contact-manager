@@ -65,7 +65,7 @@ namespace employee_contact_server.Services
             if (employee == null)
                 return false;
 
-            _context.Employees.Remove(employee);
+            employee.Deleted = true;
             await _context.SaveChangesAsync();
 
             return true;
@@ -75,7 +75,7 @@ namespace employee_contact_server.Services
         {
             var employee = await _context.Employees
                 .Include(e => e.Company)
-                .FirstOrDefaultAsync(e => e.Id == id);
+                .FirstOrDefaultAsync(e => e.Id == id && e.Deleted == false);
 
             if (employee == null)
                 return null;
@@ -118,6 +118,7 @@ namespace employee_contact_server.Services
                 .OrderByDescending(e => e.CreatedAt)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
+                .Where(e => e.Deleted == false)
                 .Select(e => new EmployeeDTO
                 {
                     Id = e.Id,
