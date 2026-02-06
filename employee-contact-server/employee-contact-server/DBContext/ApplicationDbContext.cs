@@ -67,6 +67,7 @@ public partial class ApplicationDbContext : DbContext
             entity.Property(e => e.Phone)
                 .HasMaxLength(50)
                 .IsUnicode(false);
+            entity.Property(e => e.Deleted).HasDefaultValue(false);
 
             entity.HasOne(d => d.Company).WithMany(p => p.Employees)
                 .HasForeignKey(d => d.CompanyId)
